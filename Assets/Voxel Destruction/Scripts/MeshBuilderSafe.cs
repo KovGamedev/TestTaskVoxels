@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using Unity.Collections;
 using Unity.Jobs;
 using Unity.Mathematics;
@@ -67,10 +66,10 @@ namespace VoxelDestruction
                     indexFormat = use32BitInt
                         ? UnityEngine.Rendering.IndexFormat.UInt32
                         : UnityEngine.Rendering.IndexFormat.UInt16,
-                    vertices = greedyJob.vertices.ToArray(),
-                    triangles = greedyJob.triangles.ToArray(),
-                    colors = greedyJob.colors.ToArray(),
-                    uv = greedyJob.uvs.ToArray()
+                    vertices = greedyJob.vertices.ToArray(Allocator.TempJob).ToArray(),
+                    triangles = greedyJob.triangles.ToArray(Allocator.TempJob).ToArray(),
+                    colors = greedyJob.colors.ToArray(Allocator.TempJob).ToArray(),
+                    uv = greedyJob.uvs.ToArray(Allocator.TempJob).ToArray()
                 };
                 mesh.RecalculateBounds();
                 mesh.RecalculateNormals();
