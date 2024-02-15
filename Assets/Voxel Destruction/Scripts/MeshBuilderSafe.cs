@@ -66,10 +66,10 @@ namespace VoxelDestruction
                     indexFormat = use32BitInt
                         ? UnityEngine.Rendering.IndexFormat.UInt32
                         : UnityEngine.Rendering.IndexFormat.UInt16,
-                    vertices = greedyJob.vertices.ToArray(Allocator.TempJob).ToArray(),
-                    triangles = greedyJob.triangles.ToArray(Allocator.TempJob).ToArray(),
-                    colors = greedyJob.colors.ToArray(Allocator.TempJob).ToArray(),
-                    uv = greedyJob.uvs.ToArray(Allocator.TempJob).ToArray()
+                    vertices = greedyJob.vertices.ToArray(Allocator.Persistent).ToArray(),
+                    triangles = greedyJob.triangles.ToArray(Allocator.Persistent).ToArray(),
+                    colors = greedyJob.colors.ToArray(Allocator.Persistent).ToArray(),
+                    uv = greedyJob.uvs.ToArray(Allocator.Persistent).ToArray()
                 };
                 mesh.RecalculateBounds();
                 mesh.RecalculateNormals();
