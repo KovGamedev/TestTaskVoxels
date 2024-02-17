@@ -1538,7 +1538,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   path: temple.vox
   exportMesh: 0
-  startWithPhysics: 0
+  startWithPhysics: 1
   createCollider: 1
   useConvexCollider: 0
   addVoxelCollider: 0
@@ -1547,24 +1547,24 @@ MonoBehaviour:
   buildModel: 0
   objectScale: 0.2
   pivotType: 0
-  loadingTime: 1
+  loadingTime: 5
   material: {fileID: 2100000, guid: 8cdbbf8b7a5854b49b2bd6ee35332198, type: 2}
-  delayRecalculation: 1
+  delayRecalculation: 0
   isResetable: 0
   use32BitInt: 0
-  generationType: 1
+  generationType: 2
   scheduleParallel: 0
   allocator: 4
   collapse: 0
   physicsOnCollapse: 0
   collapsePhysicsLimit: 0
-  totalMass: 10
+  totalMass: 300
   drag: 0
   angularDrag: 0.05
   constraints: 0
   interpolation: 1
   collisionMode: 0
-  destructible: 0
+  destructible: 1
   destructionType: 3
   relativeSize: 0
   particle: {fileID: 0}
@@ -1573,7 +1573,7 @@ MonoBehaviour:
     collisionStrength: 30
     collisionForce: 0.1
     physicsOnCollision: 0
-    maxVoxelDistance: 10
+    maxVoxelDistance: 5
   destructionSS:
     collisionClip:
     - Destruction1
@@ -1585,7 +1585,7 @@ MonoBehaviour:
     relativeFragmentScale: 0.5
   destructionPFS:
     useJobFragmentation: 1
-    fragSphereRadiusMin: 2
+    fragSphereRadiusMin: 1
     fragSphereRadiusMax: 5
   debug: 0
   destroyWhenFullyDestroyed: 1
@@ -6873,6 +6873,63 @@ Transform:
   - {fileID: 1925882353}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &9048953456740223913
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3467744001827228072, guid: db63edc250a2f1148a9359f11010d448, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467744001827228072, guid: db63edc250a2f1148a9359f11010d448, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467744001827228072, guid: db63edc250a2f1148a9359f11010d448, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467744001827228072, guid: db63edc250a2f1148a9359f11010d448, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467744001827228072, guid: db63edc250a2f1148a9359f11010d448, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467744001827228072, guid: db63edc250a2f1148a9359f11010d448, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467744001827228072, guid: db63edc250a2f1148a9359f11010d448, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467744001827228072, guid: db63edc250a2f1148a9359f11010d448, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467744001827228072, guid: db63edc250a2f1148a9359f11010d448, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467744001827228072, guid: db63edc250a2f1148a9359f11010d448, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4275101763940848402, guid: db63edc250a2f1148a9359f11010d448, type: 3}
+      propertyPath: m_Name
+      value: Wand
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: db63edc250a2f1148a9359f11010d448, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -6885,3 +6942,4 @@ SceneRoots:
   - {fileID: 1597397069}
   - {fileID: 1655358279}
   - {fileID: 447370395}
+  - {fileID: 9048953456740223913}
