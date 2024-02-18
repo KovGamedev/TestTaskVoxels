@@ -19,11 +19,6 @@ public class PlayerInteractions : MonoBehaviour
         _inputActions.Player.Attack.performed += Attack;
     }
 
-    private void Start()
-    {
-        Camera.main.transform.localRotation = Quaternion.identity;
-    }
-
     private void Attack(InputAction.CallbackContext context) {
         _wand.Attack();
     }
