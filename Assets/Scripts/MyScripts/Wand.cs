@@ -9,12 +9,10 @@ public class Wand : MonoBehaviour
     [SerializeField] private float _throwingStrength;
     [SerializeField] private Transform _spawnPoint;
 
-    private void Update()
+    public void Attack()
     {
-        if(Input.GetMouseButton(0)) {
-            var projectile = Instantiate(_magicProjectilePrefab);
-            projectile.transform.position = _spawnPoint.position;
-            projectile.GetComponent<Rigidbody>().velocity = _throwingStrength * Camera.main.transform.forward;
-        }
+        var projectile = Instantiate(_magicProjectilePrefab);
+        projectile.transform.position = _spawnPoint.position;
+        projectile.GetComponent<Rigidbody>().velocity = _throwingStrength * Camera.main.transform.forward;
     }
 }
