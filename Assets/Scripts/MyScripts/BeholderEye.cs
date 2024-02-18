@@ -3,12 +3,10 @@ using UnityEngine;
 public class BeholderEye : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
-    [SerializeField] private float _destructionThreshold;
+    [SerializeField] private string _layerName;
 
     public void StopAnimation(Vector3 destructionPoint, float relativeVelocity, float destructionPercentage)
     {
-        Debug.Log(destructionPoint + " " + relativeVelocity + " " + destructionPercentage);
-        if(destructionPercentage < _destructionThreshold)
-            _animator.enabled = false;
+        _animator.SetLayerWeight(_animator.GetLayerIndex(_layerName), 0);
     }
 }
