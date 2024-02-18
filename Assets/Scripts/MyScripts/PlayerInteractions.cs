@@ -19,6 +19,11 @@ public class PlayerInteractions : MonoBehaviour
         _inputActions.Player.Attack.performed += Attack;
     }
 
+    private void Start()
+    {
+        Camera.main.transform.localRotation = Quaternion.identity;
+    }
+
     private void Attack(InputAction.CallbackContext context) {
         _wand.Attack();
     }
@@ -31,12 +36,14 @@ public class PlayerInteractions : MonoBehaviour
 
     private void Move(Vector2 direction)
     {
-        transform.position += _movementSpeed * new Vector3(direction.x, 0, direction.y);
+        transform.Translate(_movementSpeed * new Vector3(direction.x, 0, direction.y));
     }
 
     public void Look(Vector2 direction)
     {
-        var rotationSummand = new Vector3(-_lookingSpeed * direction.y, _lookingSpeed * direction.x, 0);
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + rotationSummand);
+        var bodyRotationSummand = new Vector3(0, _lookingSpeed * direction.x, 0);
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + bodyRotationSummand);
+        var targetRotationX = Camera.main.transform.localRotation.eulerAngles.x - _lookingSpeed * direction.y;
+        Camera.main.transform.localRotation = Quaternion.Euler(targetRotationX, 0, 0);
     }
 }
