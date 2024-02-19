@@ -13,6 +13,9 @@ public class Player : MonoBehaviour
 
     public void Attack()
     {
+        if(_weaponType == LootType.None)
+            return;
+
         switch(_weaponType) {
             case LootType.Wand:
                 _wand.Attack();
