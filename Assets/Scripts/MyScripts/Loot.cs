@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Loot : MonoBehaviour
 {
+    public LootType Type;
+
     [Header("Rotation")]
     [SerializeField] private Transform _rotatingContainer;
     [SerializeField] private float _rotatingSpeed;

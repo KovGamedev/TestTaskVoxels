@@ -264,6 +264,37 @@ Transform:
   - {fileID: 376306326}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &278850657
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 278850658}
+  m_Layer: 0
+  m_Name: WeaponRedinessPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &278850658
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 278850657}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.21995388, y: -0.23620375, z: -0.1833522, w: 0.9285527}
+  m_LocalPosition: {x: 0.069, y: -0.182, z: 0.285}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 963194228}
+  m_LocalEulerAnglesHint: {x: 18.775, y: -33.264, z: -27.995}
 --- !u!1 &376306325
 GameObject:
   m_ObjectHideFlags: 0
@@ -1043,6 +1074,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c77245a031278d4d9a49465acdd9afa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Type: 0
   _rotatingContainer: {fileID: 1087159234}
   _rotatingSpeed: 2
   _lineRenderer: {fileID: 379527259}
@@ -1066,7 +1098,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1219,7 +1251,7 @@ Transform:
   m_GameObject: {fileID: 687285410}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.85, y: 1, z: -3.71}
+  m_LocalPosition: {x: 0.888, y: 1, z: 3.019}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1303,6 +1335,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03ac6111fe5076f41baa28d7c089b8af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _weaponRevealingPoint: {fileID: 1481590463}
+  _weaponReadinessPoint: {fileID: 278850658}
+  _weaponSwitchingTime: 1
+  _weaponSwitchingEasing: 9
+  _wand: {fileID: 1527329092}
 --- !u!1 &810267440
 GameObject:
   m_ObjectHideFlags: 0
@@ -1615,6 +1652,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1527329092}
+  - {fileID: 1481590463}
+  - {fileID: 278850658}
   m_Father: {fileID: 687285411}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &963194229
@@ -2477,6 +2516,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4, y: 2, z: 4}
   m_Center: {x: 19.5, y: 1, z: -25.5}
+--- !u!1 &1481590462
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1481590463}
+  m_Layer: 0
+  m_Name: WeaponRevealingPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1481590463
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481590462}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.21995388, y: -0.23620375, z: -0.1833522, w: 0.9285527}
+  m_LocalPosition: {x: 0.069, y: -0.484, z: 0.285}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 963194228}
+  m_LocalEulerAnglesHint: {x: 18.775, y: -33.264, z: -27.995}
 --- !u!1001 &1527329091
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2489,13 +2559,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wand
       objectReference: {fileID: 0}
+    - target: {fileID: 5312460161200880087, guid: db63edc250a2f1148a9359f11010d448, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7709767664973419935, guid: db63edc250a2f1148a9359f11010d448, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.069
       objectReference: {fileID: 0}
     - target: {fileID: 7709767664973419935, guid: db63edc250a2f1148a9359f11010d448, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.182
+      value: -0.484
       objectReference: {fileID: 0}
     - target: {fileID: 7709767664973419935, guid: db63edc250a2f1148a9359f11010d448, type: 3}
       propertyPath: m_LocalPosition.z
