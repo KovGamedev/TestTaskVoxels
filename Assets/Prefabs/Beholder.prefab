@@ -868,9 +868,9 @@ MonoBehaviour:
   onDestructionPercentage:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5513397926924452607}
-        m_TargetAssemblyTypeName: BeholderEye, Assembly-CSharp
-        m_MethodName: StopAnimation
+      - m_Target: {fileID: 8633745430244166306}
+        m_TargetAssemblyTypeName: Beholder, Assembly-CSharp
+        m_MethodName: OnDeath
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1738,6 +1738,10 @@ MonoBehaviour:
   - {fileID: 5639764865016397188}
   _attackingTime: 0.5
   _triggerCollider: {fileID: 124108397189425545}
+  _dethThresold: 0.02
+  _fallDuration: 2.5
+  _fallAltitudeY: 1
+  _fallEasing: 30
 --- !u!135 &124108397189425545
 SphereCollider:
   m_ObjectHideFlags: 0
