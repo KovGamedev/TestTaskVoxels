@@ -7,7 +7,21 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform _weaponReadinessPoint;
     [SerializeField] private float _weaponSwitchingTime;
     [SerializeField] private Ease _weaponSwitchingEasing;
-    [SerializeField] private Transform _wand;
+    [SerializeField] private Wand _wand;
+
+    private LootType _weaponType;
+
+    public void Attack()
+    {
+        switch(_weaponType) {
+            case LootType.Wand:
+                _wand.Attack();
+                break;
+            default:
+                Debug.LogError($"Weapon type is not implemented: {_weaponType}");
+                break;
+        }
+    }
 
     private void OnTriggerEnter(Collider collider)
     {
@@ -15,13 +29,14 @@ public class Player : MonoBehaviour
             switch(loot.Type) {
                 case LootType.Wand:
                     _wand.gameObject.SetActive(true);
-                    SwitchWeapon(_wand);
+                    SwitchWeapon(_wand.transform);
                     break;
                 default:
                     Debug.LogError($"Loot type is not implemented: {loot.Type}");
                     break;
             }
-
+            _weaponType = loot.Type;
+            loot.PickUp();
             Destroy(collider.gameObject);
         }
     }

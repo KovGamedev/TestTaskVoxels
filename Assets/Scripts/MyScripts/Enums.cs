@@ -1,3 +1,4 @@
 public enum LootType {
-    Wand
+    None = 0,
+    Wand = 1
 }

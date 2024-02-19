@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,7 +5,7 @@ public class PlayerInteractions : MonoBehaviour
 {
     [SerializeField] private float _movementSpeed;
     [SerializeField] private float _lookingSpeed;
-    [SerializeField] private Wand _wand;
+    [SerializeField] private Player _player;
 
     private InputActions _inputActions;
 
@@ -19,9 +17,7 @@ public class PlayerInteractions : MonoBehaviour
         _inputActions.Player.Attack.performed += Attack;
     }
 
-    private void Attack(InputAction.CallbackContext context) {
-        _wand.Attack();
-    }
+    private void Attack(InputAction.CallbackContext context) => _player.Attack();
 
     private void FixedUpdate()
     {

@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Loot : MonoBehaviour
 {
     public LootType Type;
 
+    [SerializeField] private UnityEvent _pickingUp;
     [Header("Rotation")]
     [SerializeField] private Transform _rotatingContainer;
     [SerializeField] private float _rotatingSpeed;
@@ -36,4 +38,6 @@ public class Loot : MonoBehaviour
         );
         _lineRenderer.colorGradient = gradient;
     }
+
+    public void PickUp() => _pickingUp.Invoke();
 }
