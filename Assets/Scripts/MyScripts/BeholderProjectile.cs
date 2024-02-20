@@ -2,10 +2,15 @@ using UnityEngine;
 
 public class BeholderProjectile : MonoBehaviour
 {
-    [SerializeField] private Transform _player;
     [SerializeField] private float _speed;
 
-    private void Start() => transform.LookAt(_player.position);
+    private Transform _player;
+
+    private void Start()
+    {
+        _player = GameObject.FindGameObjectWithTag("Player").transform; // Stupid Oldi inspector can not save link to scene object
+        transform.LookAt(_player.position);
+    }
 
     private void FixedUpdate() => transform.position += _speed * transform.forward;
 
