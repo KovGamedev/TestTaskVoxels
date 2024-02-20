@@ -1736,7 +1736,7 @@ MonoBehaviour:
   - {fileID: 5513397926924452607}
   - {fileID: 7854696161359819136}
   - {fileID: 5639764865016397188}
-  _attackingTime: 0.5
+  _attackingTime: 0.2
   _triggerCollider: {fileID: 124108397189425545}
   _dethThresold: 0.02
   _fallDuration: 2.5
