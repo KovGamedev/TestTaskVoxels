@@ -11,13 +11,21 @@ public class Beholder : MonoBehaviour
     [SerializeField] private List<BeholderEye> _eyes = new();
     [SerializeField] private float _attackingTime;
     [SerializeField] private Collider _triggerCollider;
+    [Header("Attack")]
+    [SerializeField] private GameObject _projectilePrefab;
+    [SerializeField] private float _shootingInterval;
+    [SerializeField] private Transform _projectileSpawnPoint;
     [Header("Destroying")]
     [SerializeField] private float _dethThresold;
     [SerializeField] private float _fallDuration;
     [SerializeField] private float _fallAltitudeY;
     [SerializeField] private Ease _fallEasing;
 
-    public void StartAnimations() => _animator.SetFloat(_animationSpeedVariable, 1);
+    public void StartAnimations()
+    {
+        _animator.SetFloat(_animationSpeedVariable, 1);
+        StartCoroutine(Attack());
+    }
 
     public void OnEyeDamaged()
     {
@@ -38,6 +46,7 @@ public class Beholder : MonoBehaviour
         var isAlive = _animator.enabled;
         if(isAlive && _dethThresold <= destructionPercentage) {
             _animator.enabled = false;
+            StopAllCoroutines();
             transform.DOMoveY(_fallAltitudeY, _fallDuration)
                 .SetEase(_fallEasing)
                 .Play();
@@ -52,15 +61,23 @@ public class Beholder : MonoBehaviour
                 eye.StartAttack(projectile.transform.position);
             }
             Destroy(projectile.gameObject);
-            StartCoroutine(StopAttackCoroutine());
+            StartCoroutine(StopDefenceCoroutine());
         }
     }
 
-    private IEnumerator StopAttackCoroutine()
+    private IEnumerator StopDefenceCoroutine()
     {
         yield return new WaitForSeconds(_attackingTime);
         foreach(var eye in _eyes) {
             eye.StopAttack();
         }
+    }
+
+    private IEnumerator Attack()
+    {
+        yield return new WaitForSeconds(_shootingInterval);
+        var projectile = Instantiate(_projectilePrefab);
+        projectile.transform.position = _projectileSpawnPoint.position;
+        StartCoroutine(Attack());
     }
 }
