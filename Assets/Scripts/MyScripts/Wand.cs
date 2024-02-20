@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Wand : MonoBehaviour
+public class Wand : MonoBehaviour, IAttacking
 {
     [SerializeField] private Transform _model;
     [SerializeField] private GameObject _magicProjectilePrefab;

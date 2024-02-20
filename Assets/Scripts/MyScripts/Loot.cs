@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Loot : MonoBehaviour
+public class Loot : MonoBehaviour, IWeaponable
 {
-    public LootType Type;
-
+    [SerializeField] private WeaponType _type;
     [SerializeField] private UnityEvent _pickingUp;
     [Header("Rotation")]
     [SerializeField] private Transform _rotatingContainer;
@@ -39,5 +38,13 @@ public class Loot : MonoBehaviour
         _lineRenderer.colorGradient = gradient;
     }
 
-    public void PickUp() => _pickingUp.Invoke();
+    private void OnTriggerEnter(Collider collider)
+    {
+        if(collider.TryGetComponent<Player>(out var player)) {
+            _pickingUp.Invoke();
+            Destroy(collider.gameObject);
+        }
+    }
+
+    public WeaponType GetWeaponType() => _type;
 }
