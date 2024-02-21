@@ -1,13 +1,13 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 using VoxelDestruction;
 
 public class PlayButton : MonoBehaviour
 {
     [SerializeField] private float _destructionStrength;
     [SerializeField] private VoxelObject _voxelObject;
+    [SerializeField] private LevelChanger _levelChanger;
     [Header("Axe animation")]
     [SerializeField] private float _axeAnimatoinDelay;
     [SerializeField] private Animator _axeAnimator;
@@ -16,7 +16,6 @@ public class PlayButton : MonoBehaviour
     {
         var inputRay = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
         if(Physics.Raycast(inputRay, out var hitInfo)) {
-            Debug.Log(hitInfo.transform.name);
             if(hitInfo.transform.GetComponentInParent<PlayButton>() != null) {
                 var point = transform.position;
                 var normal = Vector3.zero;
@@ -24,11 +23,6 @@ public class PlayButton : MonoBehaviour
                 StartCoroutine(RunAxeAnimation());
             }
         }
-    }
-
-    public void MoveToNextLevel()
-    {
-        SceneManager.LoadSceneAsync("Temple");
     }
 
     private IEnumerator RunAxeAnimation()
