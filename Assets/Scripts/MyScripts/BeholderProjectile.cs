@@ -8,7 +8,7 @@ public class BeholderProjectile : MonoBehaviour
 
     private void Start()
     {
-        _player = GameObject.FindGameObjectWithTag("Player").transform; // Stupid Oldi inspector can not save link to scene object
+        _player = GameObject.FindGameObjectWithTag("Player").transform; // Stupid Odin inspector can not save link to scene object
         transform.LookAt(_player.position);
     }
 
@@ -19,5 +19,8 @@ public class BeholderProjectile : MonoBehaviour
         var magicProjectile = collision.transform.GetComponentInParent<MagicProjectile>();
         if(magicProjectile != null)
             Destroy(gameObject);
+
+        if(collision.gameObject.TryGetComponent<Player>(out var player))
+            GameObject.FindGameObjectWithTag("LevelChanger").GetComponent<LevelChanger>().Change();
     }
 }
