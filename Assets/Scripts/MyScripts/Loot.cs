@@ -42,7 +42,7 @@ public class Loot : MonoBehaviour, IWeaponable
     {
         if(collider.TryGetComponent<Player>(out var player)) {
             _pickingUp.Invoke();
-            Destroy(collider.gameObject);
+            Destroy(gameObject);
         }
     }
 

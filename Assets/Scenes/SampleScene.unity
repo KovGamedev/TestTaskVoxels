@@ -3212,6 +3212,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1095861606}
   - component: {fileID: 1095861605}
+  - component: {fileID: 1095861607}
+  - component: {fileID: 1095861608}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -3311,6 +3313,41 @@ Transform:
   - {fileID: 971784978}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1095861607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1095861604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de714c752f5fee24bb1cff466c9a82fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _destructionStrength: 1
+  _voxelObject: {fileID: 1095861605}
+--- !u!65 &1095861608
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1095861604}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 12, y: 18, z: 1}
+  m_Center: {x: 5, y: 9, z: 0.5}
 --- !u!1 &1128886336
 GameObject:
   m_ObjectHideFlags: 0
@@ -5139,6 +5176,7 @@ GameObject:
   - component: {fileID: 2011916253}
   - component: {fileID: 2011916255}
   - component: {fileID: 2011916254}
+  - component: {fileID: 2011916256}
   m_Layer: 0
   m_Name: Axe
   m_TagString: Untagged
@@ -5197,6 +5235,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 2011916254}
   _animationName: AxeAttack
+  _attackingCollider: {fileID: 2011916256}
+--- !u!135 &2011916256
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011916252}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Radius: 0.03
+  m_Center: {x: 0.09, y: 0.23, z: 0.1}
 --- !u!1 &2105440654
 GameObject:
   m_ObjectHideFlags: 0
@@ -10193,7 +10253,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.13495062, y: 0.42500952, z: -0.068286106, w: 0.89246416}
   m_LocalPosition: {x: 0, y: -0.08094835, z: 0.049479485}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.010000001}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2011916253}
