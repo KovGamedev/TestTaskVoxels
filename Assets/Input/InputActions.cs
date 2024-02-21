@@ -147,6 +147,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Touch"",
+                    ""type"": ""Value"",
+                    ""id"": ""8e15a429-4684-4c5b-9c17-c267f7b07393"",
+                    ""expectedControlType"": ""Touch"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -158,6 +167,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""PC"",
                     ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c700705e-98a7-4074-9321-0f8fdd771151"",
+                    ""path"": ""<Touchscreen>/primaryTouch"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Touchscreen"",
+                    ""action"": ""Touch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -180,6 +200,11 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""isOR"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Touchscreen"",
+            ""bindingGroup"": ""Touchscreen"",
+            ""devices"": []
         }
     ]
 }");
@@ -191,6 +216,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         // Intro
         m_Intro = asset.FindActionMap("Intro", throwIfNotFound: true);
         m_Intro_Click = m_Intro.FindAction("Click", throwIfNotFound: true);
+        m_Intro_Touch = m_Intro.FindAction("Touch", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -315,11 +341,13 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Intro;
     private List<IIntroActions> m_IntroActionsCallbackInterfaces = new List<IIntroActions>();
     private readonly InputAction m_Intro_Click;
+    private readonly InputAction m_Intro_Touch;
     public struct IntroActions
     {
         private @InputActions m_Wrapper;
         public IntroActions(@InputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Click => m_Wrapper.m_Intro_Click;
+        public InputAction @Touch => m_Wrapper.m_Intro_Touch;
         public InputActionMap Get() { return m_Wrapper.m_Intro; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -332,6 +360,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Click.started += instance.OnClick;
             @Click.performed += instance.OnClick;
             @Click.canceled += instance.OnClick;
+            @Touch.started += instance.OnTouch;
+            @Touch.performed += instance.OnTouch;
+            @Touch.canceled += instance.OnTouch;
         }
 
         private void UnregisterCallbacks(IIntroActions instance)
@@ -339,6 +370,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Click.started -= instance.OnClick;
             @Click.performed -= instance.OnClick;
             @Click.canceled -= instance.OnClick;
+            @Touch.started -= instance.OnTouch;
+            @Touch.performed -= instance.OnTouch;
+            @Touch.canceled -= instance.OnTouch;
         }
 
         public void RemoveCallbacks(IIntroActions instance)
@@ -365,6 +399,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             return asset.controlSchemes[m_PCSchemeIndex];
         }
     }
+    private int m_TouchscreenSchemeIndex = -1;
+    public InputControlScheme TouchscreenScheme
+    {
+        get
+        {
+            if (m_TouchscreenSchemeIndex == -1) m_TouchscreenSchemeIndex = asset.FindControlSchemeIndex("Touchscreen");
+            return asset.controlSchemes[m_TouchscreenSchemeIndex];
+        }
+    }
     public interface IPlayerActions
     {
         void OnLook(InputAction.CallbackContext context);
@@ -374,5 +417,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     public interface IIntroActions
     {
         void OnClick(InputAction.CallbackContext context);
+        void OnTouch(InputAction.CallbackContext context);
     }
 }

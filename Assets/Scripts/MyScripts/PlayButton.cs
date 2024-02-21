@@ -14,7 +14,11 @@ public class PlayButton : MonoBehaviour
 
     public void OnClick(InputAction.CallbackContext context)
     {
-        var inputRay = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+        TryPressToPlayButton(Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue()));
+    }
+
+    private void TryPressToPlayButton(Ray inputRay)
+    {
         if(Physics.Raycast(inputRay, out var hitInfo)) {
             if(hitInfo.transform.GetComponentInParent<PlayButton>() != null) {
                 var point = transform.position;
@@ -23,6 +27,12 @@ public class PlayButton : MonoBehaviour
                 StartCoroutine(RunAxeAnimation());
             }
         }
+    }
+
+    public void OnTouch(InputAction.CallbackContext context)
+    {
+        Debug.Log(Touchscreen.current.position.ReadValue());
+        TryPressToPlayButton(Camera.main.ScreenPointToRay(Touchscreen.current.position.ReadValue()));
     }
 
     private IEnumerator RunAxeAnimation()
