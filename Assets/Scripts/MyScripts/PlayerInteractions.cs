@@ -37,4 +37,9 @@ public class PlayerInteractions : MonoBehaviour
         var targetRotationX = Camera.main.transform.localRotation.eulerAngles.x - _lookingSpeed * direction.y;
         Camera.main.transform.localRotation = Quaternion.Euler(targetRotationX, 0, 0);
     }
+
+    private void OnDestroy()
+    {
+        _inputActions.Player.Attack.performed -= Attack;
+    }
 }

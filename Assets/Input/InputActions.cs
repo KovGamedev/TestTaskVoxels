@@ -134,6 +134,34 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Intro"",
+            ""id"": ""64b72f3a-eee9-4798-a299-4a7dedd3183a"",
+            ""actions"": [
+                {
+                    ""name"": ""Click"",
+                    ""type"": ""Button"",
+                    ""id"": ""199534cc-7ff0-45a0-8c4d-50eaf1b01cc4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""8b6c86ed-9298-4d35-952b-7e2d08752bfb"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -160,6 +188,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
+        // Intro
+        m_Intro = asset.FindActionMap("Intro", throwIfNotFound: true);
+        m_Intro_Click = m_Intro.FindAction("Click", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -279,6 +310,52 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // Intro
+    private readonly InputActionMap m_Intro;
+    private List<IIntroActions> m_IntroActionsCallbackInterfaces = new List<IIntroActions>();
+    private readonly InputAction m_Intro_Click;
+    public struct IntroActions
+    {
+        private @InputActions m_Wrapper;
+        public IntroActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Click => m_Wrapper.m_Intro_Click;
+        public InputActionMap Get() { return m_Wrapper.m_Intro; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(IntroActions set) { return set.Get(); }
+        public void AddCallbacks(IIntroActions instance)
+        {
+            if (instance == null || m_Wrapper.m_IntroActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_IntroActionsCallbackInterfaces.Add(instance);
+            @Click.started += instance.OnClick;
+            @Click.performed += instance.OnClick;
+            @Click.canceled += instance.OnClick;
+        }
+
+        private void UnregisterCallbacks(IIntroActions instance)
+        {
+            @Click.started -= instance.OnClick;
+            @Click.performed -= instance.OnClick;
+            @Click.canceled -= instance.OnClick;
+        }
+
+        public void RemoveCallbacks(IIntroActions instance)
+        {
+            if (m_Wrapper.m_IntroActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IIntroActions instance)
+        {
+            foreach (var item in m_Wrapper.m_IntroActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_IntroActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public IntroActions @Intro => new IntroActions(this);
     private int m_PCSchemeIndex = -1;
     public InputControlScheme PCScheme
     {
@@ -293,5 +370,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+    }
+    public interface IIntroActions
+    {
+        void OnClick(InputAction.CallbackContext context);
     }
 }
