@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using VoxelDestruction;
 
 public class PlayButton : MonoBehaviour
@@ -23,6 +24,11 @@ public class PlayButton : MonoBehaviour
                 StartCoroutine(RunAxeAnimation());
             }
         }
+    }
+
+    public void MoveToNextLevel()
+    {
+        SceneManager.LoadSceneAsync("Temple");
     }
 
     private IEnumerator RunAxeAnimation()
