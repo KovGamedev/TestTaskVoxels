@@ -154,7 +154,7 @@
                     "path": "<Touchscreen>/primaryTouch",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Touchscreen",
+                    "groups": "PC",
                     "action": "Touch",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -178,11 +178,6 @@
                     "isOR": false
                 }
             ]
-        },
-        {
-            "name": "Touchscreen",
-            "bindingGroup": "Touchscreen",
-            "devices": []
         }
     ]
 }
