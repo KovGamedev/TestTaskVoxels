@@ -62,7 +62,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""PC"",
+                    ""groups"": ""MyControlScheme"",
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -132,6 +132,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9c24f728-7a0b-4695-a447-afeb8a9dee7b"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""MyControlScheme"",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -165,7 +176,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""PC"",
+                    ""groups"": ""MyControlScheme"",
                     ""action"": ""Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -176,7 +187,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Touchscreen>/primaryTouch"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""PC"",
+                    ""groups"": ""MyControlScheme"",
                     ""action"": ""Touch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -186,8 +197,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": [
         {
-            ""name"": ""PC"",
-            ""bindingGroup"": ""PC"",
+            ""name"": ""MyControlScheme"",
+            ""bindingGroup"": ""MyControlScheme"",
             ""devices"": [
                 {
                     ""devicePath"": ""<Keyboard>"",
@@ -385,13 +396,13 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         }
     }
     public IntroActions @Intro => new IntroActions(this);
-    private int m_PCSchemeIndex = -1;
-    public InputControlScheme PCScheme
+    private int m_MyControlSchemeSchemeIndex = -1;
+    public InputControlScheme MyControlSchemeScheme
     {
         get
         {
-            if (m_PCSchemeIndex == -1) m_PCSchemeIndex = asset.FindControlSchemeIndex("PC");
-            return asset.controlSchemes[m_PCSchemeIndex];
+            if (m_MyControlSchemeSchemeIndex == -1) m_MyControlSchemeSchemeIndex = asset.FindControlSchemeIndex("MyControlScheme");
+            return asset.controlSchemes[m_MyControlSchemeSchemeIndex];
         }
     }
     public interface IPlayerActions
