@@ -46,7 +46,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Attack"",
+                    ""name"": ""MouseHold"",
                     ""type"": ""Button"",
                     ""id"": ""5174fe58-33af-4bbd-a18d-5df05a89ed7f"",
                     ""expectedControlType"": ""Button"",
@@ -126,10 +126,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""8f6677d8-8342-47ca-802d-0ef299312da1"",
                     ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold"",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Attack"",
+                    ""action"": ""MouseHold"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -207,7 +207,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
-        m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
+        m_Player_MouseHold = m_Player.FindAction("MouseHold", throwIfNotFound: true);
         // Intro
         m_Intro = asset.FindActionMap("Intro", throwIfNotFound: true);
         m_Intro_Click = m_Intro.FindAction("Click", throwIfNotFound: true);
@@ -275,14 +275,14 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Movement;
-    private readonly InputAction m_Player_Attack;
+    private readonly InputAction m_Player_MouseHold;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
         public PlayerActions(@InputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
-        public InputAction @Attack => m_Wrapper.m_Player_Attack;
+        public InputAction @MouseHold => m_Wrapper.m_Player_MouseHold;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -298,9 +298,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
-            @Attack.started += instance.OnAttack;
-            @Attack.performed += instance.OnAttack;
-            @Attack.canceled += instance.OnAttack;
+            @MouseHold.started += instance.OnMouseHold;
+            @MouseHold.performed += instance.OnMouseHold;
+            @MouseHold.canceled += instance.OnMouseHold;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -311,9 +311,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
             @Movement.canceled -= instance.OnMovement;
-            @Attack.started -= instance.OnAttack;
-            @Attack.performed -= instance.OnAttack;
-            @Attack.canceled -= instance.OnAttack;
+            @MouseHold.started -= instance.OnMouseHold;
+            @MouseHold.performed -= instance.OnMouseHold;
+            @MouseHold.canceled -= instance.OnMouseHold;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -398,7 +398,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     {
         void OnLook(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
-        void OnAttack(InputAction.CallbackContext context);
+        void OnMouseHold(InputAction.CallbackContext context);
     }
     public interface IIntroActions
     {

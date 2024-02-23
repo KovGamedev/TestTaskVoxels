@@ -5,7 +5,8 @@ public class PlayerInteractions : MonoBehaviour
 {
     [SerializeField] private float _movementSpeed;
     [SerializeField] private float _lookingSpeed;
-    [SerializeField] private Player _player;
+
+    private bool _isMouseButtonHeld = false;
 
     private InputActions _inputActions;
 
@@ -14,15 +15,19 @@ public class PlayerInteractions : MonoBehaviour
         _inputActions = new InputActions();
         _inputActions.Player.Enable();
 
-        _inputActions.Player.Attack.performed += Attack;
+        _inputActions.Player.MouseHold.started += SetMouseButtonPressed;
+        _inputActions.Player.MouseHold.canceled += SetMouseButtonUnpressed;
     }
 
-    private void Attack(InputAction.CallbackContext context) => _player.Attack();
+    private void SetMouseButtonPressed(InputAction.CallbackContext context) => _isMouseButtonHeld = true;
+
+    private void SetMouseButtonUnpressed(InputAction.CallbackContext context) => _isMouseButtonHeld = false;
 
     private void FixedUpdate()
     {
         Move(_inputActions.Player.Movement.ReadValue<Vector2>());
-        Look(_inputActions.Player.Look.ReadValue<Vector2>());
+        if(_isMouseButtonHeld)
+            Look(_inputActions.Player.Look.ReadValue<Vector2>());
     }
 
     private void Move(Vector2 direction)
@@ -32,14 +37,16 @@ public class PlayerInteractions : MonoBehaviour
 
     public void Look(Vector2 direction)
     {
-        var bodyRotationSummand = new Vector3(0, _lookingSpeed * direction.x, 0);
+        var invertedDirection = -direction;
+        var bodyRotationSummand = new Vector3(0, _lookingSpeed * invertedDirection.x, 0);
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + bodyRotationSummand);
-        var targetRotationX = Camera.main.transform.localRotation.eulerAngles.x - _lookingSpeed * direction.y;
+        var targetRotationX = Camera.main.transform.localRotation.eulerAngles.x - _lookingSpeed * invertedDirection.y;
         Camera.main.transform.localRotation = Quaternion.Euler(targetRotationX, 0, 0);
     }
 
     private void OnDestroy()
     {
-        _inputActions.Player.Attack.performed -= Attack;
+        _inputActions.Player.MouseHold.started -= SetMouseButtonPressed;
+        _inputActions.Player.MouseHold.canceled -= SetMouseButtonUnpressed;
     }
 }

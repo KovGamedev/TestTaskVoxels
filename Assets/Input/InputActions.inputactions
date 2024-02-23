@@ -24,7 +24,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Attack",
+                    "name": "MouseHold",
                     "type": "Button",
                     "id": "5174fe58-33af-4bbd-a18d-5df05a89ed7f",
                     "expectedControlType": "Button",
@@ -104,10 +104,10 @@
                     "name": "",
                     "id": "8f6677d8-8342-47ca-802d-0ef299312da1",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "",
+                    "interactions": "Hold",
                     "processors": "",
                     "groups": "",
-                    "action": "Attack",
+                    "action": "MouseHold",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
