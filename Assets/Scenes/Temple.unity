@@ -2155,7 +2155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movementSpeed: 0.05
-  _lookingSpeed: 0.5
+  _lookingSpeed: 0.4
 --- !u!136 &687285414
 CapsuleCollider:
   m_ObjectHideFlags: 0

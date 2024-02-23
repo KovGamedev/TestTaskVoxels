@@ -36,8 +36,13 @@ public class PlayerInteractions : MonoBehaviour
         if(_movingDirection != Vector2.zero)
             Move(_movingDirection);
 
+#if UNITY_STANDALONE
         if(!_isPlayerMoving && _isMouseButtonHeld)
             Look(_inputActions.Player.Look.ReadValue<Vector2>());
+#else
+        if(!_isPlayerMoving)
+            Look(_inputActions.Player.Look.ReadValue<Vector2>());
+#endif
     }
 
     private void Move(Vector2 direction) => transform.Translate(_movementSpeed * new Vector3(direction.x, 0, direction.y));
