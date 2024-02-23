@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -9,6 +10,8 @@ public class Player : MonoBehaviour
     [SerializeField] private Ease _weaponSwitchingEasing;
     [SerializeField] private Wand _wand;
     [SerializeField] private Axe _axe;
+    [SerializeField] private float _controlEnablingDelay;
+    [SerializeField] private PlayerInteractions _playerInteractions;
 
     private WeaponType _weaponType;
 
@@ -75,5 +78,17 @@ public class Player : MonoBehaviour
         weapon.DOLocalMove(_weaponReadinessPoint.localPosition, _weaponSwitchingTime)
             .SetEase(_weaponSwitchingEasing)
             .Play();
+    }
+
+    private void Start()
+    {
+        StartCoroutine(EnableControl());
+        transform.rotation = Quaternion.identity;
+    }
+
+    private IEnumerator EnableControl() {
+        yield return new WaitForSeconds(_controlEnablingDelay);
+        _playerInteractions.enabled = true;
+        transform.rotation = Quaternion.identity;
     }
 }
