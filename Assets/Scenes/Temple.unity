@@ -2156,7 +2156,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movementSpeed: 0.05
   _lookingSpeed: 0.5
-  _player: {fileID: 687285416}
 --- !u!136 &687285414
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4686,6 +4685,7 @@ MonoBehaviour:
   _canvas: {fileID: 1853906530}
   _rectTransfrom: {fileID: 1242625256}
   _maxDeltaPosition: 80
+  _playerInterations: {fileID: 687285413}
 --- !u!1 &1244034142
 GameObject:
   m_ObjectHideFlags: 0

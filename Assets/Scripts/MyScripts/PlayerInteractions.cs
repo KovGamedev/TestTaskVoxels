@@ -6,9 +6,14 @@ public class PlayerInteractions : MonoBehaviour
     [SerializeField] private float _movementSpeed;
     [SerializeField] private float _lookingSpeed;
 
-    private bool _isMouseButtonHeld = false;
-
     private InputActions _inputActions;
+    private bool _isMouseButtonHeld = false;
+    private bool _isPlayerMoving = false;
+    private Vector2 _movingDirection;
+
+    public void SetPlayerMoving(bool isPlayerMoving) => _isPlayerMoving = isPlayerMoving;
+
+    public void SetMovingDirectoin(Vector2 direction) => _movingDirection = direction;
 
     private void Awake()
     {
@@ -25,15 +30,17 @@ public class PlayerInteractions : MonoBehaviour
 
     private void FixedUpdate()
     {
+#if UNITY_STANDALONE
         Move(_inputActions.Player.Movement.ReadValue<Vector2>());
-        if(_isMouseButtonHeld)
+#endif
+        if(_movingDirection != Vector2.zero)
+            Move(_movingDirection);
+
+        if(!_isPlayerMoving && _isMouseButtonHeld)
             Look(_inputActions.Player.Look.ReadValue<Vector2>());
     }
 
-    private void Move(Vector2 direction)
-    {
-        transform.Translate(_movementSpeed * new Vector3(direction.x, 0, direction.y));
-    }
+    private void Move(Vector2 direction) => transform.Translate(_movementSpeed * new Vector3(direction.x, 0, direction.y));
 
     public void Look(Vector2 direction)
     {
