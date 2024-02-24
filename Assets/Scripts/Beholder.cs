@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Beholder : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class Beholder : MonoBehaviour
     [SerializeField] private float _fallDuration;
     [SerializeField] private float _fallAltitudeY;
     [SerializeField] private Ease _fallEasing;
+    [SerializeField] private UnityEvent _destroyingEvent = new();
 
     public void StartAnimations()
     {
@@ -49,6 +51,7 @@ public class Beholder : MonoBehaviour
             StopAllCoroutines();
             transform.DOMoveY(_fallAltitudeY, _fallDuration)
                 .SetEase(_fallEasing)
+                .OnComplete(() => _destroyingEvent.Invoke())
                 .Play();
         }
     }

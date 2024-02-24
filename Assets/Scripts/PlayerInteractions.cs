@@ -30,13 +30,11 @@ public class PlayerInteractions : MonoBehaviour
 
     private void FixedUpdate()
     {
-#if UNITY_STANDALONE
         Move(_inputActions.Player.Movement.ReadValue<Vector2>());
-#endif
         if(_movingDirection != Vector2.zero)
             Move(_movingDirection);
 
-#if UNITY_STANDALONE
+#if UNITY_EDITOR
         if(!_isPlayerMoving && _isMouseButtonHeld)
             Look(_inputActions.Player.Look.ReadValue<Vector2>());
 #else
@@ -49,10 +47,10 @@ public class PlayerInteractions : MonoBehaviour
 
     public void Look(Vector2 direction)
     {
-        var invertedDirection = -direction;
-        var bodyRotationSummand = new Vector3(0, _lookingSpeed * invertedDirection.x, 0);
+        var invertedNormalizedDirection = -direction.normalized;
+        var bodyRotationSummand = new Vector3(0, _lookingSpeed * invertedNormalizedDirection.x, 0);
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + bodyRotationSummand);
-        var targetRotationX = Camera.main.transform.localRotation.eulerAngles.x - _lookingSpeed * invertedDirection.y;
+        var targetRotationX = Camera.main.transform.localRotation.eulerAngles.x - _lookingSpeed * invertedNormalizedDirection.y;
         Camera.main.transform.localRotation = Quaternion.Euler(targetRotationX, 0, 0);
     }
 
