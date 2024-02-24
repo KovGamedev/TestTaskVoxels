@@ -22,7 +22,13 @@ public class PlayerInteractions : MonoBehaviour
 
         _inputActions.Player.MouseHold.started += SetMouseButtonPressed;
         _inputActions.Player.MouseHold.canceled += SetMouseButtonUnpressed;
+        _inputActions.Player.Movement.started += AllowMoving;
+        _inputActions.Player.Movement.canceled += ForbidMoving;
     }
+
+    private void AllowMoving(InputAction.CallbackContext context) => SetPlayerMoving(true);
+
+    private void ForbidMoving(InputAction.CallbackContext context) => SetPlayerMoving(false);
 
     private void SetMouseButtonPressed(InputAction.CallbackContext context) => _isMouseButtonHeld = true;
 
@@ -30,8 +36,11 @@ public class PlayerInteractions : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Move(_inputActions.Player.Movement.ReadValue<Vector2>());
-        if(_movingDirection != Vector2.zero)
+#if UNITY_EDITOR
+        if(_isPlayerMoving)
+            Move(_inputActions.Player.Movement.ReadValue<Vector2>());
+#endif
+        if(_isPlayerMoving && _movingDirection != Vector2.zero)
             Move(_movingDirection);
 
 #if UNITY_EDITOR
@@ -58,5 +67,7 @@ public class PlayerInteractions : MonoBehaviour
     {
         _inputActions.Player.MouseHold.started -= SetMouseButtonPressed;
         _inputActions.Player.MouseHold.canceled -= SetMouseButtonUnpressed;
+        _inputActions.Player.Movement.started -= AllowMoving;
+        _inputActions.Player.Movement.canceled -= ForbidMoving;
     }
 }

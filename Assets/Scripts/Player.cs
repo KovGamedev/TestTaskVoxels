@@ -12,6 +12,9 @@ public class Player : MonoBehaviour
     [SerializeField] private Axe _axe;
     [SerializeField] private float _controlEnablingDelay;
     [SerializeField] private PlayerInteractions _playerInteractions;
+    [SerializeField] private UI _ui;
+
+    private Tween _weaponRevealingTween;
 
     private WeaponType _weaponType;
 
@@ -66,16 +69,22 @@ public class Player : MonoBehaviour
 
     private void DeactivateWeapon(Transform weapon)
     {
-        weapon.DOLocalMove(_weaponRevealingPoint.localPosition, _weaponSwitchingTime)
-            .SetEase(_weaponSwitchingEasing)
+        if(_weaponRevealingTween.IsActive())
+            _weaponRevealingTween.Kill();
+        _weaponRevealingTween = weapon.DOLocalMove(_weaponRevealingPoint.localPosition, _weaponSwitchingTime)
+            .OnStart(() => _ui.SetAttackButtonActive(false))
             .OnComplete(() => weapon.gameObject.SetActive(false))
+            .SetEase(_weaponSwitchingEasing)
             .Play();
     }
 
     private void ActivateWeapon(Transform weapon)
     {
+        if(_weaponRevealingTween.IsActive())
+            _weaponRevealingTween.Kill();
         weapon.localPosition = _weaponRevealingPoint.localPosition;
-        weapon.DOLocalMove(_weaponReadinessPoint.localPosition, _weaponSwitchingTime)
+        _weaponRevealingTween = weapon.DOLocalMove(_weaponReadinessPoint.localPosition, _weaponSwitchingTime)
+            .OnStart(() => _ui.SetAttackButtonActive(true))
             .SetEase(_weaponSwitchingEasing)
             .Play();
     }
