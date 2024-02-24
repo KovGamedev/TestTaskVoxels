@@ -1,3 +1,5 @@
+using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 public class UI : MonoBehaviour
@@ -6,6 +8,9 @@ public class UI : MonoBehaviour
     [SerializeField] private GameObject _movingButton;
     [SerializeField] private GameObject _attackButton;
     [SerializeField] private PlayerInteractions _playerInteractions;
+    [SerializeField] private TextMeshProUGUI _textMesh;
+    [SerializeField] private float _congratulationsRevealingDuration;
+    [SerializeField] private float _congratulationsDuration;
 
     public void DeactivateMovingPossibilitiy()
     {
@@ -22,4 +27,11 @@ public class UI : MonoBehaviour
     }
 
     public void SetAttackButtonActive(bool shouldBeActive) => _attackButton.SetActive(shouldBeActive);
+
+    public void ShowCongratulations() {
+        DOTween.Sequence()
+          .Insert(0, _textMesh.DOFade(1, _congratulationsRevealingDuration))
+          .Insert(_congratulationsRevealingDuration + _congratulationsDuration, _textMesh.DOFade(0, _congratulationsRevealingDuration))
+          .Play();
+    }
 }
