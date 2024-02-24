@@ -10,7 +10,6 @@ public class BeholderEye : MonoBehaviour
     [SerializeField] private string _layerName;
     [Header("Ray")]
     [SerializeField] private LineRenderer _lineRenderer;
-    [SerializeField] private Transform _lineSourcePoint;
 
     private Vector3 _targetGlobalPosition;
 

@@ -15,7 +15,7 @@ public class Beholder : MonoBehaviour
     [Header("Attack")]
     [SerializeField] private GameObject _projectilePrefab;
     [SerializeField] private float _shootingInterval;
-    [SerializeField] private Transform _projectileSpawnPoint;
+    [SerializeField] private Vector3 _projectileSpawnDeltaPositoin;
     [Header("Destroying")]
     [SerializeField] private float _dethThresold;
     [SerializeField] private float _fallDuration;
@@ -91,7 +91,7 @@ public class Beholder : MonoBehaviour
     {
         yield return new WaitForSeconds(_shootingInterval);
         var projectile = Instantiate(_projectilePrefab);
-        projectile.transform.position = _projectileSpawnPoint.position;
+        projectile.transform.position = transform.position + _projectileSpawnDeltaPositoin;
         StartCoroutine(Attack());
     }
 }

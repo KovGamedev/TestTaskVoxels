@@ -25,7 +25,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 100}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 21002
+  controlID: 31446
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 20889
+  controlID: 31318
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -173,7 +173,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 20866
+  controlID: 31295
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -582,9 +582,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0.7798406, y: 2.939022, z: -0.97591877}
+    m_Target: {x: -0.28, y: 5.38, z: -12.03}
     speed: 2
-    m_Value: {x: 0.7798406, y: 2.939022, z: -0.97591877}
+    m_Value: {x: -0.28, y: 5.38, z: -12.03}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -630,17 +630,17 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.013125214, y: -0.105993964, z: 0.0014006449, w: 0.99428767}
+    m_Target: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
     speed: 2
-    m_Value: {x: 0.013125103, y: -0.10599307, z: 0.001400633, w: 0.99427927}
+    m_Value: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_Size:
-    m_Target: 1.2572112
+    m_Target: 7.586129
     speed: 2
-    m_Value: 1.2572112
+    m_Value: 7.586129
   m_Ortho:
-    m_Target: 0
+    m_Target: 1
     speed: 2
-    m_Value: 0
+    m_Value: 1
   m_CameraSettings:
     m_Speed: 1
     m_SpeedNormalized: 0.5
@@ -958,7 +958,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 55374
+  m_LastSelectedObjectID: 55398
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1026,7 +1026,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 20955
+  controlID: 31399
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1089,10 +1089,10 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 175.6}
+      scrollPos: {x: 0, y: 47.600006}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: fa86c5ff1888c5ffe28bc5ff028cc5ff9a38d5ff383dd5ff22fbffff7e740000dc7400001675000002d600001ad8000030d800003ad8000042d800004ed800005ad8000066d800006cd80000
+      m_ExpandedIDs: 0843b5ff0a43b5ff1243b5ff1443b5ff1643b5ff1a43b5ff1c43b5ff1e43b5fffa86c5ff1888c5ffe28bc5ff028cc5ff9a38d5ff383dd5ff22fbffff7e740000dc7400001675000002d600001ad8000030d800003ad8000042d800004ed800005ad8000066d800006cd80000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1135,8 +1135,8 @@ MonoBehaviour:
     y: 378.4
     width: 359.20007
     height: 352.4
-  m_MinSize: {x: 230, y: 250}
-  m_MaxSize: {x: 10000, y: 10000}
+  m_MinSize: {x: 232, y: 271}
+  m_MaxSize: {x: 10002, y: 10021}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -1187,7 +1187,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/StreamingAssets
+    - Assets/Input
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1195,15 +1195,15 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/StreamingAssets
+  - Assets/Input
   m_LastFoldersGridSize: 16
   m_LastProjectPath: E:\My games\VoxelTestTask
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 120}
-    m_SelectedIDs: be780000
-    m_LastClickedID: 30910
+    m_SelectedIDs: a2780000
+    m_LastClickedID: 30882
     m_ExpandedIDs: 00000000fc770000fe77000000780000027800000478000006780000087800000a7800000c7800000e780000127800001478000016780000187800001a78000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0

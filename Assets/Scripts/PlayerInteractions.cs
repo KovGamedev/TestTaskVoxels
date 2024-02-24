@@ -56,10 +56,10 @@ public class PlayerInteractions : MonoBehaviour
 
     public void Look(Vector2 direction)
     {
-        var invertedNormalizedDirection = -direction.normalized;
-        var bodyRotationSummand = new Vector3(0, _lookingSpeed * invertedNormalizedDirection.x, 0);
+        var invertedDirection = -direction;
+        var bodyRotationSummand = new Vector3(0, _lookingSpeed * invertedDirection.x, 0);
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + bodyRotationSummand);
-        var targetRotationX = Camera.main.transform.localRotation.eulerAngles.x - _lookingSpeed * invertedNormalizedDirection.y;
+        var targetRotationX = Camera.main.transform.localRotation.eulerAngles.x - _lookingSpeed * invertedDirection.y;
         Camera.main.transform.localRotation = Quaternion.Euler(targetRotationX, 0, 0);
     }
 
