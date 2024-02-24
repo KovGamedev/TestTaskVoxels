@@ -31,6 +31,8 @@ public class MoveButton : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
         _playerInterations.SetMovingDirectoin(Vector2.zero);
     }
 
+    public void ResetPosition() => _rectTransfrom.anchoredPosition = _startAnchoredPosition;
+
     private void Awake()
     {
         _startAnchoredPosition = _rectTransfrom.anchoredPosition;

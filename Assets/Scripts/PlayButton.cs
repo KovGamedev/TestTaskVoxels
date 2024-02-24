@@ -6,6 +6,7 @@ using VoxelDestruction;
 
 public class PlayButton : MonoBehaviour
 {
+    [SerializeField] private AudioSource _audioSource;
     [SerializeField] private float _destructionStrength;
     [SerializeField] private VoxelObject _voxelObject;
     [SerializeField] private LevelChanger _levelChanger;
@@ -36,6 +37,7 @@ public class PlayButton : MonoBehaviour
                 var point = transform.position;
                 var normal = Vector3.zero;
                 _voxelObject.AddDestruction(_destructionStrength, point, normal);
+                _audioSource.Play();
                 StartCoroutine(RunAxeAnimation());
             }
         }

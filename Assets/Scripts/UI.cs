@@ -5,7 +5,7 @@ using UnityEngine;
 public class UI : MonoBehaviour
 {
     [SerializeField] private GameObject _movingPanel;
-    [SerializeField] private GameObject _movingButton;
+    [SerializeField] private MoveButton _movingButton;
     [SerializeField] private GameObject _attackButton;
     [SerializeField] private PlayerInteractions _playerInteractions;
     [SerializeField] private TextMeshProUGUI _textMesh;
@@ -15,7 +15,8 @@ public class UI : MonoBehaviour
     public void DeactivateMovingPossibilitiy()
     {
         _movingPanel.SetActive(false);
-        _movingButton.SetActive(false);
+        _movingButton.gameObject.SetActive(false);
+        _movingButton.ResetPosition();
         _playerInteractions.SetMovingDirectoin(Vector2.zero);
         _playerInteractions.SetPlayerMoving(false);
     }

@@ -5,6 +5,7 @@ using VoxelDestruction;
 
 public class Door : MonoBehaviour
 {
+    [SerializeField] private AudioSource _audioSource;
     [SerializeField] private float _destructionStrength;
     [SerializeField] private VoxelObject _voxelObject;
 
@@ -15,6 +16,7 @@ public class Door : MonoBehaviour
     private void TryDestroyByAxe(Collider collider)
     {
         if(collider.transform.TryGetComponent<Axe>(out var axe)) {
+            _audioSource.Play();
             var point = collider.ClosestPoint(axe.transform.position);
             var normal = Vector3.forward;
             _voxelObject.AddDestruction(_destructionStrength, point, normal);
