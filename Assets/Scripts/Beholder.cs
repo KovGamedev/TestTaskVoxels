@@ -22,6 +22,10 @@ public class Beholder : MonoBehaviour
     [SerializeField] private float _fallAltitudeY;
     [SerializeField] private Ease _fallEasing;
     [SerializeField] private UnityEvent _destroyingEvent = new();
+    [Header("Audio")]
+    [SerializeField] private AudioClip _painSound;
+    [SerializeField] private AudioClip _deathSound;
+    [SerializeField] private AudioSource _audioSource;
 
     public void StartAnimations()
     {
@@ -31,6 +35,8 @@ public class Beholder : MonoBehaviour
 
     public void OnEyeDamaged()
     {
+        _audioSource.Play();
+
         var areAllEyesDamaged = true;
         foreach(var eye in _eyes) {
             if(eye.IsHealthy()) {
@@ -53,6 +59,8 @@ public class Beholder : MonoBehaviour
                 .SetEase(_fallEasing)
                 .OnComplete(() => _destroyingEvent.Invoke())
                 .Play();
+            _audioSource.clip = _deathSound;
+            _audioSource.Play();
         }
     }
 
