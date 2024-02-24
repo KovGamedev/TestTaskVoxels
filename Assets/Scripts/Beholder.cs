@@ -35,7 +35,9 @@ public class Beholder : MonoBehaviour
 
     public void OnEyeDamaged()
     {
-        _audioSource.Play();
+        var isAlive = _animator.enabled;
+        if(isAlive)
+            _audioSource.Play();
 
         var areAllEyesDamaged = true;
         foreach(var eye in _eyes) {
@@ -61,6 +63,7 @@ public class Beholder : MonoBehaviour
                 .Play();
             _audioSource.clip = _deathSound;
             _audioSource.Play();
+
         }
     }
 
