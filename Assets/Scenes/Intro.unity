@@ -284,8 +284,7 @@ MonoBehaviour:
     physicsOnCollision: 0
     maxVoxelDistance: 10
   destructionSS:
-    collisionClip:
-    - Destruction1
+    collisionClip: []
     soundVolumeScale: 100
   destructionFNRS:
     minFragmentSize: 2

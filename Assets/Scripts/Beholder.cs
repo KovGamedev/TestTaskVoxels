@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -29,8 +30,10 @@ public class Beholder : MonoBehaviour
 
     public void StartAnimations()
     {
-        _animator.SetFloat(_animationSpeedVariable, 1);
-        StartCoroutine(Attack());
+        if(Application.isPlaying) {
+            _animator.SetFloat(_animationSpeedVariable, 1);
+            StartCoroutine(Attack());
+        }
     }
 
     public void OnEyeDamaged()
@@ -94,4 +97,6 @@ public class Beholder : MonoBehaviour
         projectile.transform.position = transform.position + _projectileSpawnDeltaPositoin;
         StartCoroutine(Attack());
     }
+
+    private void OnDestroy() => StopAllCoroutines();
 }
